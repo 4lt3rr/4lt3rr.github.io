@@ -5,7 +5,7 @@ description: "Write up for White Rabbit challenge"
 image: "./image.png"
 tags:
   - "PWN"
-category: "CTF Writeups"
+category: "CTF Write ups"
 draft: false
 ---
 
