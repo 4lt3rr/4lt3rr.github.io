@@ -2,7 +2,7 @@
 title: "[DREAMHACK] - ssp_001"
 published: 2024-12-01
 description: ""
-image: "../../image.png"
+image: "../image.png"
 tags:
   - PWN
 category: "Wargame"
