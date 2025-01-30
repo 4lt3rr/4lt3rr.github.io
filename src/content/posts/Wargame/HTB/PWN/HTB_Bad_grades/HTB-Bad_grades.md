@@ -1,8 +1,8 @@
 ---
 title: "[HTB] - Execute"
-published: 2025-25-01
+published: 2025-01-30
 description: "ROP with canary and stripped file"
-image: ../../logo.jpg
+image: "../../logo.jpg"
 tags:
   - PWN
 category: "Wargame"
