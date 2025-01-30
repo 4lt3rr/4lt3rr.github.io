@@ -10,8 +10,6 @@ category: "CTF Write ups"
 draft: false
 ---
 
-![image.png](image.png)
-
 ## Pwn
 
 ### Retro2Win
