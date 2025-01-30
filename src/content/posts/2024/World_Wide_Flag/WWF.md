@@ -1,9 +1,10 @@
 ---
-title: [WRITE UP] - World Wide Flag CTF 2024 - White Rabbit
+title: [WRITE UP] - World Wide CTF 2024 - White Rabbit
 published: 2024-12-01
-image: ./image.png
-tags: [PWN]
-category: CTF Write ups
+description: "Write up for White Rabbit challenge"
+image: "./image.png"
+tags: ["PWN"]
+category: CTF Writeups
 draft: false
 ---
 
