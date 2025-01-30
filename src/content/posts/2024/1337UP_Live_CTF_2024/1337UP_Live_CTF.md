@@ -1,9 +1,11 @@
 ---
 title: [WRITE UP] - 1337UP Live CTF 2024
 published: 2024-12-01
-description: My first CTF Write up
+description: "My first CTF Write up"
 image: ./image.png
-tags: ["REV", "PWN"]
+tags:
+  - REV
+  - PWN
 category: CTF Write ups
 draft: false
 ---
