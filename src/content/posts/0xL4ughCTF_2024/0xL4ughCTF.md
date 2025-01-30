@@ -2,7 +2,7 @@
 title: [WRITE UP] - 0xL4ugh CTF 2024 - Wanna play a game?
 published: 2024-12-01
 description: "Write up for Wanna play a game challenge"
-tags: ["PWN"]
+tags: ["PWN", "2024"]
 category: CTF Writeups
 draft: false
 ---
