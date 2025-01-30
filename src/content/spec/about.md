@@ -9,7 +9,6 @@
 - ♾️ `Dream` -> `Fuel` -> `Explore` -> `Hack` -> `Repeat`
 
 ### Reach out to me via
-### Feel free to reach out to me via
 >
 > - Instagram: <code>https://www.instagram.com/_s0.l__/</code>
 > - Discord: <code>[Sol](https://discordapp.com/users/590715913939189765)</code>
