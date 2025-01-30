@@ -1,6 +1,6 @@
 ---
 title: "[HTB] - Execute"
-published: 2025-30-01
+published: 2025-25-01
 description: "ROP with canary and stripped file"
 image: ../../logo.jpg
 tags:
@@ -68,9 +68,7 @@ Một file `stripped`  kèm theo `Full RELRO` và `Canary` . Khá căng những 
 
 Mặc dù file nhị phân bị `stripped`, tức là không còn thông tin về tên hàm hoặc biến để phân tích, nhưng IDA vẫn hiển thị hàm `main` nhờ khả năng phân tích hoạt động của chương trình. Trên các hệ thống như Linux, chương trình thường bắt đầu từ hàm `_start`, sau đó gọi đến `__libc_start_main`, và cuối cùng `__libc_start_main` sẽ gọi hàm `main`. Do `__libc_start_main` là một phần của thư viện chuẩn (như `glibc`) và không bị stripped, IDA có thể nhận diện hàm này và lần theo tham số đầu tiên (địa chỉ của `main`) để xác định vị trí của hàm `main`.
 
-<aside>
-💡
-
+:::note[Mở rộng]
 The `__libc_start_main()` function shall perform any necessary initialization of the execution environment, call the `*main*` function with appropriate arguments, and handle the return from `main()`. If the `main()` function returns, the return value shall be passed to the `exit()` function.
 
 **Note:** While this specification is intended to be implementation independent, process and library initialization may include:
@@ -94,8 +92,7 @@ The `__libc_start_main()` function shall perform any necessary initialization 
 `__libc_start_main()` is not in the source standard; it is only in the binary standard.
 
 > Ref: [**__libc_start_main**](https://refspecs.linuxbase.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/baselib---libc-start-main-.html)
->
-</aside>
+:::
 
 Vì thế dựa vào đây, ta có thể decompile thêm 2 hàm nữa
 

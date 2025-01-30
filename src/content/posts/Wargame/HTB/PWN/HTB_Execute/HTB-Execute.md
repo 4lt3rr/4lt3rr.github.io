@@ -1,6 +1,6 @@
 ---
 title: "[HTB] - Execute"
-published: 2025-30-01
+published: 2025-25-01
 description: "Use XOR Operation to bypass black list"
 image: ../../logo.jpg
 tags:
