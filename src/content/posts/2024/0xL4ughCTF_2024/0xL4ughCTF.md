@@ -4,7 +4,6 @@ published: 2024-12-01
 description: "Write up for Wanna play a game challenge"
 tags:
   - "PWN"
-  - "2024"
 category: "CTF Writeups"
 draft: false
 ---

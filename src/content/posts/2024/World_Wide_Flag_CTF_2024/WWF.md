@@ -5,7 +5,6 @@ description: "Write up for White Rabbit challenge"
 image: "./image.png"
 tags:
   - "PWN"
-  - "2024"
 category: "CTF Writeups"
 draft: false
 ---
