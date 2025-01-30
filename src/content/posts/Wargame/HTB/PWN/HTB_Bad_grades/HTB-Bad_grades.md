@@ -1,5 +1,5 @@
 ---
-title: "[HTB] - Execute"
+title: "[HTB] - Bad grades"
 published: 2025-01-30
 description: "ROP with canary and stripped file"
 image: "../../logo.jpg"
