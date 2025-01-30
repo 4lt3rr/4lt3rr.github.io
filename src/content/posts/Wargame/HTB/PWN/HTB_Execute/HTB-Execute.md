@@ -2,7 +2,7 @@
 title: "[HTB] - Execute"
 published: 2025-30-01
 description: "Use XOR Operation to bypass black list"
-image: ../../logo.png
+image: ../../logo.jpg
 tags:
   - PWN
 category: "Wargame"
