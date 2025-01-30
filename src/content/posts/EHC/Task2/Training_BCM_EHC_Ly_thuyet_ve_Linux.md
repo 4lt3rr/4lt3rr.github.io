@@ -62,15 +62,15 @@ Sau khi đã nắm thông tin sơ bộ về các file thì ta sẽ tiếp đến
 
 **Mục tiêu: Ta sẽ tạo một file chứ nội dung `TRAINING BCM EHC` vào trong file có tên là `EHC.txt` và trong thư mục `EHC`**
 
-- Dùng `pwd` để xem ta đang ở đâu:
+Dùng `pwd` để xem ta đang ở đâu:
 
 ![image.png](image.png)
 
-- Tiếp đến ta thấy ta đang ở `/` và mục tiêu của ta là  tạo file trong thư mục  `/home/alter` , ta sẽ sử dụng các lệnh `cd`  , `mkdir` và `touch` để làm điều này:
+Tiếp đến ta thấy ta đang ở `/` và mục tiêu của ta là  tạo file trong thư mục  `/home/alter` , ta sẽ sử dụng các lệnh `cd`  , `mkdir` và `touch` để làm điều này:
 
 ![image.png](image%201.png)
 
-- Và cuối cùng là thêm nội dung vào đó và in nó ra màn hình với lệnh `cat` và `echo` :
+Và cuối cùng là thêm nội dung vào đó và in nó ra màn hình với lệnh `cat` và `echo` :
 
 ![image.png](image%202.png)
 
@@ -84,7 +84,7 @@ Sau khi đã nắm thông tin sơ bộ về các file thì ta sẽ tiếp đến
 
 Và để dễ hình dung hơn ở đây mình đã  viết sẵn một chương trình C đơn giản có chức năng đọc dữ liệu đầu vào của người dùng và in ra nó:
 
-```csharp
+```c
 #include <stdio.h>
 
 int main() {
@@ -150,9 +150,7 @@ Cuối cùng là **3 ký tự `r-x`**, đại diện cho quyền của **nh�
 
 **Lưu ý: các quyền phải theo thứ tự từ Owner → Group → Other và phải đi theo thứ tự `Read -> Write -> Execute`**
 
-Và tiếp theo là mình sẽ can thiệp vào các quyền của file này thông qua `chmod` và `chown` :
-
-- Ví dụ mình muốn cấp quyền ghi cho người dùng ở phần `Other` thì mình có thể thực hiện như sau:
+Và tiếp theo là mình sẽ can thiệp vào các quyền của file này thông qua `chmod` và `chown`. Ví dụ ta muốn cấp quyền ghi cho người dùng ở phần `Other` thì mình có thể thực hiện như sau:
 
 ```bash
 chmod o+w example
@@ -234,7 +232,7 @@ root          21  0.0  0.0      0     0 ?        S    21:13   0:00 [idle_inject/
 root          22  0.0  0.0      0     0 ?        S    21:13   0:00 [cpuhp/0]
 ```
 
-Và kêys thúc một tiếng trình bằng cách sử dụng `kill <PID>`
+Và kết thúc một tiến trình bằng cách sử dụng `kill <PID>`
 
 ## Các loại Process
 
