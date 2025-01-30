@@ -36,7 +36,7 @@ So the idea for this:
 - `SROP` for RWX Memory: Use `SROP` to call `mmap` and create an executable memory region.
 - Shellcode Execution: Inject shellcode using `openat` to open the flag, `read` it, and `write` to stdout.
 
-- **`Exploit`**:
+## Exploit:
 ```py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
