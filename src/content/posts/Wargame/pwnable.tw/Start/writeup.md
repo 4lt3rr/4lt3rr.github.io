@@ -1,6 +1,6 @@
 ---
 title: "[PWNABLE.TW] - Start"
-published: 2025-01-30
+published: 2025-02-01
 description: "32-bits shellcode and ROP"
 image: "../og_img.png"
 tags:
