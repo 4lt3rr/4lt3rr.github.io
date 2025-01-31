@@ -76,7 +76,7 @@ Và cuối cùng là thêm nội dung vào đó và in nó ra màn hình với l
 
 ## **File Descriptors**
 
-Ở ví dụ thực hành mẫu trên ta đã thấy được rằng cách tương tác và thao tác với một tệp trong `Linux` . Một điều thú vị là những lần ta `echo` dữ liệu vào file `EHC.txt` hay dùng `cat` để in dữ liệu của file đó ra màn hình gòi là gì? Thì chúng được gọi là `File Descriptors` hay còn được gọi tắt là `fd` . Nói dễ hiểu `fd` là thứ mà hệ điều hành dùng để theo dõi các `Input/Output` của người dùng, và `Linux` hiện có 3 `fd` sau:
+Ở ví dụ thực hành mẫu trên ta đã thấy được rằng cách tương tác và thao tác với một tệp trong `Linux` . Một điều thú vị là những lần ta `echo` dữ liệu vào file `EHC.txt` hay dùng `cat` để in dữ liệu của file đó ra màn hình gọi là gì? Thì chúng được gọi là `File Descriptors` hay còn được gọi tắt là `fd` . Nói dễ hiểu `fd` là thứ mà hệ điều hành dùng để theo dõi các `Input/Output` của người dùng, và `Linux` hiện có 3 `fd` sau:
 
 - `STDIN - 0` : Biểu thị cho luồng  dữ liệu đầu vào
 - `STDOUT - 1` : Biểu thị cho luồng dữ liệu đầu ra
