@@ -6,7 +6,7 @@ image: "./logo.jpg"
 tags:
   - EHC
 category: "EHC TRAINING BCM"
-draft: true
+draft: false
 ---
 
 # Setup môi trường
