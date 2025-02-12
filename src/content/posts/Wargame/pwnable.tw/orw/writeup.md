@@ -1,6 +1,6 @@
 ---
 title: "[PWNABLE.TW] - orw"
-published: 2025-02-01
+published: 2025-02-12
 description: "32-bits shellcode with seccomp rules"
 image: "../og_img.png"
 tags:
