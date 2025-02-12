@@ -1,7 +1,7 @@
 ---
 title: "[PWNABLE.TW] - orw"
 published: 2025-02-12
-description: "32-bits shellcode with seccomp rules"
+description: "32-bits shellcode with seccomp rule"
 image: "../og_img.png"
 tags:
   - PWN
@@ -11,9 +11,8 @@ draft: false
 
 # Description
 
-> Read the flag from /home/orw/flag.
-
-> Only open read write syscall are allowed to use.
+>Read the flag from /home/orw/flag.
+>Only open read write syscall are allowed to use.
 
 # Reverse Engineering
 
