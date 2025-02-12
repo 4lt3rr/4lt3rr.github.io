@@ -9,11 +9,6 @@ category: "Wargame"
 draft: false
 ---
 
-# Description
-
->Read the flag from /home/orw/flag.
->Only open read write syscall are allowed to use.
-
 # Reverse Engineering
 
 ```sh
