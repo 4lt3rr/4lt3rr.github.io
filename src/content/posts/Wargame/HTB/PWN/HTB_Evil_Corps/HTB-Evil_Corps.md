@@ -284,7 +284,7 @@ The `wcharToChar16` function converts wide characters into UTF-16 encoding. Unli
     - There is space in the destination buffer (`a3 > 1`), leaving room for the null terminator.
     - The current character (`result`) is `non-zero` (i.e., it hasn’t reached the end of the string).
 
-  ![alt text](image-6.png)
+    ![alt text](image-6.png)
 
 
 3. Inside the Loop:
@@ -304,7 +304,7 @@ The `wcharToChar16` function converts wide characters into UTF-16 encoding. Unli
   - Null-Terminate the Destination String: `*a2 = 0;` writes a null terminator at the end of the destination string.
   - Return Value: The function returns the last value of result. Typically, if the loop terminates due to reaching the end of the string (i.e., encountering a zero), result will be zero.
 
-  ![alt text](image-8.png)
+    ![alt text](image-8.png)
 
 The function converts characters from a `4-byte` wide-character format (such as `UTF-32`) to `UTF-16` by copying only the lower `16 bits`. As a result, any higher-order bits are discarded, potentially causing data loss if they were set. Once the conversion is done, the `UTF-16` characters are stored at the address held by the `rsi` register (in this case, `cs:SupportMsg`), which was allocated earlier during the `Setup` function.
 
