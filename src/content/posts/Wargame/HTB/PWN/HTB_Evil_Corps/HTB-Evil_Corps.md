@@ -92,13 +92,12 @@ This call sets the program's locale to `US English` with `UTF-8` encoding, ensur
 ```sh
 sudo locale-gen en_US.UTF-8
 ```
+These functions modify the buffering behavior for stdin and another memory segment (_bss_start), which can affect input/output performance.
 
 ```c
 setvbuf(stdin, 0LL, 2, 0LL);
 setvbuf(_bss_start, 0LL, 2, 0LL);
 ```
-
-These functions modify the buffering behavior for stdin and another memory segment (_bss_start), which can affect input/output performance.
 
 And then two key memory regions are allocated:
 
