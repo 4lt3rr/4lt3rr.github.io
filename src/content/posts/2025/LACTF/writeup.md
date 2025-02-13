@@ -34,15 +34,13 @@ This is a very good CTF competition, and maybe since I first learned pwn until n
 
 From the security checks on the binary, we can make several key observations:
 
-- No Stack Canary: The binary does not use stack canaries, meaning it lacks protection against stack-based buffer overflows. This makes it easier to overwrite return addresses without triggering a security check.
+- No `Stack Canary`: The binary does not use stack canaries, meaning it lacks protection against stack-based buffer overflows. This makes it easier to overwrite return addresses without triggering a security check.
 
-- PIE Enabled: Position Independent Executable (PIE) is enabled, which means that memory addresses are randomized on each execution. This makes absolute address leaks necessary for a reliable exploit.
+- `PIE Enabled`: `Position Independent Executable (PIE)` is enabled, which means that memory addresses are randomized on each execution. This makes absolute address leaks necessary for a reliable exploit.
 
-- NX Enabled: The Non-Executable (NX) bit is enabled, preventing direct execution of shellcode on the stack. An exploit would likely require techniques like ROP (Return-Oriented Programming).
+- `NX Enabled`: `The Non-Executable (NX)` bit is enabled, preventing direct execution of shellcode on the stack. An exploit would likely require techniques like `ROP (Return-Oriented Programming)`.
 
-- Partial RELRO: Partial Relocation Read-Only (RELRO) suggests that the GOT (Global Offset Table) is writable, which could be useful for GOT overwrite attacks.
-
-- Not Stripped: Since the binary is not stripped, function symbols are available, making reverse engineering and exploit development easier.
+- `Partial RELRO`: `Partial Relocation Read-Only (RELRO)` suggests that the `GOT (Global Offset Table)` is writable, which could be useful for `GOT overwrite` attacks.
 
 But before we know what to to next we need to analysis the `pseudo-code` gave by IDA:
 
@@ -230,13 +228,13 @@ Index: 13 -> Value: b'(nil)' -> Encoded: b'(nil)'
 
 From the security checks on the binary, we can make several key observations:
 
-- No Stack Canary → Vulnerable to stack-based buffer overflows.
+- No `Stack Canary` → Vulnerable to `stack-based buffer overflows`.
 
-- NX Enabled → The stack is non-executable, so shellcode injection won’t work; ROP (Return-Oriented Programming) may be needed.
+- `NX Enabled` → The stack is `non-executable`, so `shellcode` injection won’t work; `ROP (Return-Oriented Programming)` may be needed.
 
-- No PIE → Binary is loaded at a fixed address (0x400000), making ROP exploitation easier since function addresses are static.
+- `No PIE` → Binary is loaded at a fixed address (`0x400000`), making ROP exploitation easier since function addresses are static.
 
-- Full RELRO → The GOT (Global Offset Table) is read-only, preventing GOT overwrite attacks.
+- `Full RELRO` → The `GOT (Global Offset Table)` is read-only, preventing `GOT overwrite` attacks.
 
 In this challenge we are given the source code, let's look at it and analyze what it has.
 
@@ -498,13 +496,13 @@ lactf{1s_tHi5_y0Ur_1St_3vER_p1VooT}
 
 From the security checks on the binary, we can make several key observations:
 
-- RELRO: Partial RELRO → GOT is writable, making GOT overwrite attacks possible.
+- `RELRO`: `Partial RELRO` → `GOT` is writable, making `GOT overwrite` attacks possible.
 
-- Stack Canary: No canary → Stack-based buffer overflows are easier to exploit.
+- `Stack Canary`: No canary → `Stack-based buffer overflows` are easier to exploit.
 
-- NX (No-Execute): Enabled → We cannot execute shellcode on the stack.
+- `NX (No-Execute)`: Enabled → We cannot execute shellcode on the stack.
 
-- PIE (Position-Independent Executable): Disabled (0x400000) → The binary has a fixed base address, making ROP (Return-Oriented Programming) easier.
+- `PIE (Position-Independent Executable)`: Disabled (0x400000) → The binary has a fixed base address, making `ROP (Return-Oriented Programming)` easier.
 
 As in the previous challenge, this challenge also comes with source code.
 
