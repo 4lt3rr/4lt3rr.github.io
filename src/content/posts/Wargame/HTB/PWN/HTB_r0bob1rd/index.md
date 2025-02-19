@@ -107,7 +107,7 @@ So by doing basic calculate we can have the offset from `robobirdNames[0]` -> `p
 ((address of robobirdNames[0]) - (address of puts@GOT)) / 8
 ->  (0x6020A0 - 0x0602020 ) /8 = 16
 
--> So our index is `-16` because the address of `robobirdNames[0]` is higher than `puts@GOT`
+-> So our index is "-16" because the address of "robobirdNames[0]" is higher than "puts@GOT"
 ```
 
 So the reason why we divide to 8 is because On a `64-bit system`, each pointer occupies 8 bytes of memory. Since `robobirdNames` is an array of `char*` (pointers to characters), each element in the array is 8 bytes in size. Therefore, to determine the number of elements in the array from its total memory size, we divide by 8.
