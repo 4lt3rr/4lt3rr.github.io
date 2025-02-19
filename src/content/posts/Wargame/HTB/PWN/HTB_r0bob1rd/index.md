@@ -1,5 +1,5 @@
 ---
-title: "[HTB] - Execute"
+title: "[HTB] - r0bob1rd"
 published: 2025-02-19
 description: "64-bit ELF, OOB + Format String bug"
 image: "../../logo.jpg"
