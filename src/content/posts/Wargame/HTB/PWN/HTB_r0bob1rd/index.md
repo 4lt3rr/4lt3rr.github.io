@@ -228,7 +228,7 @@ pwndbg> stack 40
 11:0088│+008    0x7fffffffdbe8 —▸ 0x400c52 (main+67) ◂— mov eax, 0
 ```
 
-We can see a part of our input `overflow` and `overwrite` a part of `canary` value. And we know that when the value of `canary` has changed `___stack_chk_fail` function will be called. So we'll take advantage of that with our string format to overwrite `___stack_chk_fail` to the address of `one gadget` and from there get the shell
+We can see a part of our input `overflow` and `overwrite` a part of `canary` value. And we know that when the value of `canary` has changed `__stack_chk_fail` function will be called. So we'll take advantage of that with our string format to overwrite `__stack_chk_fail` to the address of `one gadget` and from there get the shell
 
 ```py
 def method1():
@@ -254,7 +254,7 @@ def method1():
 
 ## Method 2
 
-This one is a little bit complex, but I'll try my best to explain it more clearly. So the first thing we need to do is find a way to let the program `return to operation`. As I told you in `method 1`, we can use `Format String Bug` to overwrite `___stack_chk_fail` to `operation` function. With that when we change the value of `canary` we can make it `call operation`
+This one is a little bit complex, but I'll try my best to explain it more clearly. So the first thing we need to do is find a way to let the program `return to operation`. As I told you in `method 1`, we can use `Format String Bug` to overwrite `__stack_chk_fail` to `operation` function. With that when we change the value of `canary` we can make it `call operation`
 
 Next, when we let the program run indefinitely while changing the value of the canary, we will no longer worry about the program ending when it finishes executing. And now we can continue with the address leak, and the 2 addresses we need to pay attention to here are `libc` and `stack address`. Why the stack address? Because we will put our `ROP` chain here and let the program return to it and execute the shell
 
