@@ -210,8 +210,8 @@ Let's break down this function to know what it does:
       error("Missing '/' in between old and new.");
     ```
 
-    - `find()` locates the first / that separates the old string from the new string.
-    - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
+      - `find()` locates the first / that separates the old string from the new string.
+      - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
 
     - Extracting `oldStringLength`
 
@@ -261,7 +261,7 @@ Let's break down this function to know what it does:
     dest = outputBuffer;
     tailLength = strlen((const char *)(oldStringLength + oldOccurrencePos));
     ```
-    - `tailLength` stores the remaining length of the string after `oldString` is found.
+      - `tailLength` stores the remaining length of the string after `oldString` is found.
 
     - Copying the First Part (Before `oldString`)
 
