@@ -212,6 +212,7 @@ Let's break down this function to know what it does:
 
   - `find()` locates the first / that separates the old string from the new string.
   - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
+
   - Extracting `oldStringLength`
 
     ```c
@@ -230,6 +231,7 @@ Let's break down this function to know what it does:
     if ( !replacementEndDelimiter )
       error("Missing '/' after the replacement.");
     ```
+
     - The function finds the end delimiter / marking the end of the replacement string.
     - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
 
@@ -238,6 +240,7 @@ Let's break down this function to know what it does:
     replacementLength = (_DWORD)replacementEndDelimiter - (_DWORD)newReplacementStart;
     *replacementEndDelimiter = 0;
     ```
+
     - Calculates the length of the new replacement string.
     - Null-terminates it to ensure clean processing.
 
@@ -248,6 +251,7 @@ Let's break down this function to know what it does:
   if ( !oldOccurrencePos )
     error("Could not find old string in input.");
   ```
+
   - Searches for oldString in the user-provided input string.
   - If not found, an error is thrown: `Could not find old string in input.`
 
@@ -265,13 +269,15 @@ Let's break down this function to know what it does:
     memcpy(dest, &input, oldOccurrencePos - (_QWORD)&input);
     dest = (char *)dest + oldOccurrencePos - (_QWORD)&input;
     ```
-  - Copies the part of the input before `oldString` into `outputBuffer`.
+
+    - Copies the part of the input before `oldString` into `outputBuffer`.
 
   - Copying the Replacement String
     ```c
     memcpy(dest, newReplacementStart, replacementLength);
     dest = (char *)dest + replacementLength;
     ```
+    
     - Copies the new replacement string into `outputBuffer`.
 
   - Copying the Remaining Part (After `oldString`)
