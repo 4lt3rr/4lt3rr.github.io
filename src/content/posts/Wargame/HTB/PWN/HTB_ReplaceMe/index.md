@@ -170,7 +170,7 @@ int __fastcall do_replacement(__int64 Replacement:_, __int64 p_replacement)
 Let's break down this function to know what it does:
 
 :::tip[CODE BREAK DOWN]
-- Variable Initialization:
+**Variable Initialization:**
 
   ```c
   char outputBuffer[8]; // Small buffer (potential overflow risk)
@@ -191,7 +191,7 @@ Let's break down this function to know what it does:
     - `oldOccurrencePos`: Position of the old string in the user input.
     - `dest`: Pointer used to construct the new modified string.
 
-- Checking the Replacement String Format:
+**Checking the Replacement String Format:**
 
   ```c
   if ( replacement != 's' || n47 != '/' )
@@ -201,7 +201,7 @@ Let's break down this function to know what it does:
   - The function ensures the replacement string starts with s/.
   - If it doesn’t, an error is displayed: `Missing 's/' at the beginning of the replacement string.`
 
--  Extracting old and new Strings:
+**Extracting old and new Strings:**
 
     ```c
     oldString = (const char *)&src_;
@@ -241,7 +241,7 @@ Let's break down this function to know what it does:
       - Calculates the length of the new replacement string.
       - Null-terminates it to ensure clean processing.
 
-- Searching for the Old String in Input
+**Searching for the Old String in Input**
 
   ```c
   oldOccurrencePos = find((__int64)&input, oldString, 128);
@@ -251,7 +251,7 @@ Let's break down this function to know what it does:
   - Searches for oldString in the user-provided input string.
   - If not found, an error is thrown: `Could not find old string in input.`
 
-- Constructing the New Output
+**Constructing the New Output**
 
     ```c
       dest = outputBuffer;
