@@ -203,16 +203,16 @@ Let's break down this function to know what it does:
 
 -  Extracting old and new Strings:
 
-  ```c
-  oldString = (const char *)&src_;
-  newReplacementStart = (void *)find((__int64)&src_, "/", 128);
-  if ( !newReplacementStart )
-    error("Missing '/' in between old and new.");
-  ```
+    ```c
+    oldString = (const char *)&src_;
+    newReplacementStart = (void *)find((__int64)&src_, "/", 128);
+    if ( !newReplacementStart )
+      error("Missing '/' in between old and new.");
+    ```
 
-  - `find()` locates the first / that separates the old string from the new string.
-  - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
-  - Extracting `oldStringLength`
+    - `find()` locates the first / that separates the old string from the new string.
+    - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
+    - Extracting `oldStringLength`
 
     ```c
     oldStringLength = (_DWORD)newReplacementStart - (_DWORD)oldString;
@@ -224,22 +224,22 @@ Let's break down this function to know what it does:
     - Null-terminates the `oldString`, ensuring it is properly isolated.
     - Moves the pointer to the start of the new replacement string.
 
-  - Finding End of `new` String
-    ```c
-    replacementEndDelimiter = (_BYTE *)find((__int64)newReplacementStart, "/", 128);
-    if ( !replacementEndDelimiter )
-      error("Missing '/' after the replacement.");
-    ```
-    - The function finds the end delimiter / marking the end of the replacement string.
-    - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
+    - Finding End of `new` String
+      ```c
+      replacementEndDelimiter = (_BYTE *)find((__int64)newReplacementStart, "/", 128);
+      if ( !replacementEndDelimiter )
+        error("Missing '/' after the replacement.");
+      ```
+      - The function finds the end delimiter / marking the end of the replacement string.
+      - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
 
-  - Extracting `replacementLength`
-    ```c
-    replacementLength = (_DWORD)replacementEndDelimiter - (_DWORD)newReplacementStart;
-    *replacementEndDelimiter = 0;
-    ```
-    - Calculates the length of the new replacement string.
-    - Null-terminates it to ensure clean processing.
+    - Extracting `replacementLength`
+      ```c
+      replacementLength = (_DWORD)replacementEndDelimiter - (_DWORD)newReplacementStart;
+      *replacementEndDelimiter = 0;
+      ```
+      - Calculates the length of the new replacement string.
+      - Null-terminates it to ensure clean processing.
 
 - Searching for the Old String in Input
 
@@ -254,8 +254,8 @@ Let's break down this function to know what it does:
 - Constructing the New Output
 
     ```c
-    dest = outputBuffer;
-    tailLength = strlen((const char *)(oldStringLength + oldOccurrencePos));
+      dest = outputBuffer;
+      tailLength = strlen((const char *)(oldStringLength + oldOccurrencePos));
     ```
     - `tailLength` stores the remaining length of the string after `oldString` is found.
 
@@ -265,7 +265,7 @@ Let's break down this function to know what it does:
     memcpy(dest, &input, oldOccurrencePos - (_QWORD)&input);
     dest = (char *)dest + oldOccurrencePos - (_QWORD)&input;
     ```
-  - Copies the part of the input before `oldString` into `outputBuffer`.
+    - Copies the part of the input before `oldString` into `outputBuffer`.
 
   - Copying the Replacement String
     ```c
