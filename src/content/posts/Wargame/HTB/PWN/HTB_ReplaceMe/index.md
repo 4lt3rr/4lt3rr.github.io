@@ -170,7 +170,7 @@ int __fastcall do_replacement(__int64 Replacement:_, __int64 p_replacement)
 Let's break down this function to know what it does:
 
 :::tip[CODE BREAK DOWN]
-**Variable Initialization:**
+- Variable Initialization:
 
   ```c
   char outputBuffer[8]; // Small buffer (potential overflow risk)
@@ -198,8 +198,8 @@ Let's break down this function to know what it does:
     error("Missing 's/' at the beginning of the replacement string.");
   ```
 
-    - The function ensures the replacement string starts with s/.
-    - If it doesn’t, an error is displayed: `Missing 's/' at the beginning of the replacement string.`
+  - The function ensures the replacement string starts with s/.
+  - If it doesn’t, an error is displayed: `Missing 's/' at the beginning of the replacement string.`
 
 **Extracting old and new Strings:**
 
@@ -210,8 +210,8 @@ Let's break down this function to know what it does:
     error("Missing '/' in between old and new.");
   ```
 
-    - `find()` locates the first / that separates the old string from the new string.
-    - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
+  - `find()` locates the first / that separates the old string from the new string.
+  - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
   **Extracting `oldStringLength`**
 
     ```c
@@ -220,9 +220,9 @@ Let's break down this function to know what it does:
     newReplacementStart = (char *)newReplacementStart + 1;
     ```
 
-      - Calculates the length of the old string.
-      - Null-terminates the `oldString`, ensuring it is properly isolated.
-      - Moves the pointer to the start of the new replacement string.
+    - Calculates the length of the old string.
+    - Null-terminates the `oldString`, ensuring it is properly isolated.
+    - Moves the pointer to the start of the new replacement string.
 
   **Finding End of `new` String**
     ```c
@@ -230,16 +230,16 @@ Let's break down this function to know what it does:
     if ( !replacementEndDelimiter )
       error("Missing '/' after the replacement.");
     ```
-      - The function finds the end delimiter / marking the end of the replacement string.
-      - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
+    - The function finds the end delimiter / marking the end of the replacement string.
+    - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
 
   **Extracting `replacementLength`**
     ```c
     replacementLength = (_DWORD)replacementEndDelimiter - (_DWORD)newReplacementStart;
     *replacementEndDelimiter = 0;
     ```
-      - Calculates the length of the new replacement string.
-      - Null-terminates it to ensure clean processing.
+    - Calculates the length of the new replacement string.
+    - Null-terminates it to ensure clean processing.
 
 **Searching for the Old String in Input**
 
@@ -248,15 +248,15 @@ Let's break down this function to know what it does:
   if ( !oldOccurrencePos )
     error("Could not find old string in input.");
   ```
-    - Searches for oldString in the user-provided input string.
-    - If not found, an error is thrown: `Could not find old string in input.`
+  - Searches for oldString in the user-provided input string.
+  - If not found, an error is thrown: `Could not find old string in input.`
 
 **Constructing the New Output**
 
-  ```c
-  dest = outputBuffer;
-  tailLength = strlen((const char *)(oldStringLength + oldOccurrencePos));
-  ```
+    ```c
+    dest = outputBuffer;
+    tailLength = strlen((const char *)(oldStringLength + oldOccurrencePos));
+    ```
     - `tailLength` stores the remaining length of the string after `oldString` is found.
 
   **Copying the First Part (Before `oldString`)**
@@ -265,14 +265,14 @@ Let's break down this function to know what it does:
     memcpy(dest, &input, oldOccurrencePos - (_QWORD)&input);
     dest = (char *)dest + oldOccurrencePos - (_QWORD)&input;
     ```
-      - Copies the part of the input before `oldString` into `outputBuffer`.
+    - Copies the part of the input before `oldString` into `outputBuffer`.
 
   **Copying the Replacement String**
     ```c
     memcpy(dest, newReplacementStart, replacementLength);
     dest = (char *)dest + replacementLength;
     ```
-      - Copies the new replacement string into `outputBuffer`.
+    - Copies the new replacement string into `outputBuffer`.
 
   **Copying the Remaining Part (After `oldString`)**
     ```c
@@ -280,7 +280,7 @@ Let's break down this function to know what it does:
       memcpy(dest, (const void *)(oldOccurrencePos + oldStringLength), tailLength);
     ```
 
-      - If there is content after `oldString`, it copies the remaining part.
+    - If there is content after `oldString`, it copies the remaining part.
 :::
 
 This function will replace the string we specify in the format `s/old/new/`. And the way it identifies the strings `old` and `new` is based on the `/` and `s/` characters.
@@ -295,8 +295,7 @@ With that, we can perform a `Buffer Overflow` attack, by letting the first input
 
 We know that the `ask_input` function uses `read` to read our input, so if our string connects to some memory address, it only stops when it encounters a null byte. So that we can do `Partial Overwrite` + `Leak address` at the same time. The reason we do `Partial Overwrite` is because `PIE` is enabled, but the last byte of each address is still the same because that is the `offset` from `base`
 
-So that my exploit will be:
-
+So that my exploit will be
 ```py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
