@@ -213,36 +213,36 @@ Let's break down this function to know what it does:
     - `find()` locates the first / that separates the old string from the new string.
     - If it doesn’t exist, an error is thrown: `Missing '/' in between old and new.`
 
-  - Extracting `oldStringLength`
+    - Extracting `oldStringLength`
 
-    ```c
-    oldStringLength = (_DWORD)newReplacementStart - (_DWORD)oldString;
-    *(_BYTE *)newReplacementStart = 0;
-    newReplacementStart = (char *)newReplacementStart + 1;
-    ```
+      ```c
+      oldStringLength = (_DWORD)newReplacementStart - (_DWORD)oldString;
+      *(_BYTE *)newReplacementStart = 0;
+      newReplacementStart = (char *)newReplacementStart + 1;
+      ```
 
-    - Calculates the length of the old string.
-    - Null-terminates the `oldString`, ensuring it is properly isolated.
-    - Moves the pointer to the start of the new replacement string.
+      - Calculates the length of the old string.
+      - Null-terminates the `oldString`, ensuring it is properly isolated.
+      - Moves the pointer to the start of the new replacement string.
 
-  - Finding End of `new` String
-    ```c
-    replacementEndDelimiter = (_BYTE *)find((__int64)newReplacementStart, "/", 128);
-    if ( !replacementEndDelimiter )
-      error("Missing '/' after the replacement.");
-    ```
+    - Finding End of `new` String
+      ```c
+      replacementEndDelimiter = (_BYTE *)find((__int64)newReplacementStart, "/", 128);
+      if ( !replacementEndDelimiter )
+        error("Missing '/' after the replacement.");
+      ```
 
-    - The function finds the end delimiter / marking the end of the replacement string.
-    - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
+      - The function finds the end delimiter / marking the end of the replacement string.
+      - If it doesn’t exist, an error is thrown: `Missing '/' after the replacement.`
 
-  - Extracting `replacementLength`
-    ```c
-    replacementLength = (_DWORD)replacementEndDelimiter - (_DWORD)newReplacementStart;
-    *replacementEndDelimiter = 0;
-    ```
+    - Extracting `replacementLength`
+      ```c
+      replacementLength = (_DWORD)replacementEndDelimiter - (_DWORD)newReplacementStart;
+      *replacementEndDelimiter = 0;
+      ```
 
-    - Calculates the length of the new replacement string.
-    - Null-terminates it to ensure clean processing.
+      - Calculates the length of the new replacement string.
+      - Null-terminates it to ensure clean processing.
 
 4. Searching for the Old String in Input
 
@@ -263,30 +263,30 @@ Let's break down this function to know what it does:
     ```
     - `tailLength` stores the remaining length of the string after `oldString` is found.
 
-  - Copying the First Part (Before `oldString`)
+    - Copying the First Part (Before `oldString`)
 
-    ```c
-    memcpy(dest, &input, oldOccurrencePos - (_QWORD)&input);
-    dest = (char *)dest + oldOccurrencePos - (_QWORD)&input;
-    ```
+      ```c
+      memcpy(dest, &input, oldOccurrencePos - (_QWORD)&input);
+      dest = (char *)dest + oldOccurrencePos - (_QWORD)&input;
+      ```
 
-    - Copies the part of the input before `oldString` into `outputBuffer`.
+      - Copies the part of the input before `oldString` into `outputBuffer`.
 
-  - Copying the Replacement String
-    ```c
-    memcpy(dest, newReplacementStart, replacementLength);
-    dest = (char *)dest + replacementLength;
-    ```
+    - Copying the Replacement String
+      ```c
+      memcpy(dest, newReplacementStart, replacementLength);
+      dest = (char *)dest + replacementLength;
+      ```
 
-    - Copies the new replacement string into `outputBuffer`.
+      - Copies the new replacement string into `outputBuffer`.
 
-  - Copying the Remaining Part (After `oldString`)
-    ```c
-    if ( tailLength > 0 )
-      memcpy(dest, (const void *)(oldOccurrencePos + oldStringLength), tailLength);
-    ```
+    - Copying the Remaining Part (After `oldString`)
+      ```c
+      if ( tailLength > 0 )
+        memcpy(dest, (const void *)(oldOccurrencePos + oldStringLength), tailLength);
+      ```
 
-    - If there is content after `oldString`, it copies the remaining part.
+      - If there is content after `oldString`, it copies the remaining part.
 :::
 
 This function will replace the string we specify in the format `s/old/new/`. And the way it identifies the strings `old` and `new` is based on the `/` and `s/` characters.
