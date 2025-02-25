@@ -1,6 +1,6 @@
 ---
 title: "[WRITE UP] - TRX CTF"
-published: 2025-02-13
+published: 2025-02-25
 description: "Write up for TRX CTF"
 image: "./TRX.png"
 tags:
