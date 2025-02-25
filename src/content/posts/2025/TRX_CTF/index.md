@@ -11,7 +11,7 @@ draft: false
 
 # Introduction
 
-Another great CTF that I participated in. There were a lot of good pwns in this CTF, but in terms of skills, I could only solve one challenge and this will be my write-up for that challenge. I will try to find out about other challenges and update this write-up.... Because I am currently practicing ASM coding and practicing more Reverse skills.
+Another great CTF that I participated in. There were a lot of good pwn challenges in this CTF, but in terms of skills, I could only solve one challenge, which will be my write-up for that challenge. I will try to find out about other challenges and update this write-up... Because I am currently practicing ASM coding and practicing more Reverse skills.
 
 # Virtual Insanity
 
@@ -37,7 +37,7 @@ First, we will need to use `checksec` to know what `security method` is applied 
     Stripped:   No
 ```
 
-So we can see, the binary have `PIE` and no `Canary`, dive into the source code we know that, there is a `win` function which we can let the program return to after finish the `main` function
+So we can see that the binary has `PIE` and no `Canary`, dive into the source code we know that there is a `win` function which we can let the program return to after finishing the `main` function
 
 ```c
 #include <stdlib.h>
@@ -60,7 +60,7 @@ int main() {
 }
 ```
 
-But the problem here is this binary has `PIE`, and there is no way for us to `ret2win` in manual way, how about `Stack Pivot`? Still no because the `puts` function is above `read` function and there is `FULL RELRO` so this is impossible to leak the address too. We can think `Partial Overwrite`, but this way still impossible because the `main` function call first, and when it return, it will return to the function that called it (as know as `__libc_start_call_main()`) to exit.
+But the problem here is this binary has `PIE`, and there is no way for us to `ret2win` in a manual way, how about `Stack Pivot`? Still no because the `puts` function is above `read` function and there is `FULL RELRO` so this is impossible to leak the address too. We can think of `Partial Overwrite`, but this way is still impossible because the `main` function calls first, and when it returns, it will return to the function that called it (as known as `__libc_start_call_main()`) to exit.
 
 ```sh
    0x55555555523a <main+96>                       mov    rsi, rax               RSI => 0x7fffffffdc10 —▸ 0x7fffffffdfc9 ◂— 0x34365f363878
@@ -147,7 +147,7 @@ All virtual system call requests are handled within the `__vsyscall_page`, using
 
 ## Exploit Development
 
-So with that information about `vsyscall` we can easily take advantage of the `ret` instruction in that, to let the program return to `rsp+0x10` (in case be stop at main `ret`)
+So with that information about `vsyscall` we can easily take advantage of the `ret` instruction, to let the program return to `rsp+0x10` (in case we stopped at main `ret`)
 
 ```sh
 00:0000│ rsp 0x7fffffffdc38 —▸ 0x7ffff7dabd90 (__libc_start_call_main+128) ◂— mov edi, eax
