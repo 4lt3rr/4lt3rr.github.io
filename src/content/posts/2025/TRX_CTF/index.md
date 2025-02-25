@@ -62,32 +62,7 @@ int main() {
 
 But the problem here is this binary has `PIE`, and there is no way for us to `ret2win` in a manual way, how about `Stack Pivot`? Still no because the `puts` function is above `read` function and there is `FULL RELRO` so this is impossible to leak the address too. We can think of `Partial Overwrite`, but this way is still impossible because the `main` function calls first, and when it returns, it will return to the function that called it (as known as `__libc_start_call_main()`) to exit.
 
-```sh
-   0x55555555523a <main+96>                       mov    rsi, rax               RSI => 0x7fffffffdc10 —▸ 0x7fffffffdfc9 ◂— 0x34365f363878
-   0x55555555523d <main+99>                       mov    edi, 0                 EDI => 0
-   0x555555555242 <main+104>                      call   read@plt                    <read@plt>
-
-   0x555555555247 <main+109>                      mov    eax, 0                 EAX => 0
-   0x55555555524c <main+114>                      leave
- ► 0x55555555524d <main+115>                      ret                                <__libc_start_call_main+128>
-    ↓
-   0x7ffff7dabd90 <__libc_start_call_main+128>    mov    edi, eax               EDI => 0
-   0x7ffff7dabd92 <__libc_start_call_main+130>    call   exit                        <exit>
-
-   0x7ffff7dabd97 <__libc_start_call_main+135>    call   __nptl_deallocate_tsd       <__nptl_deallocate_tsd>
-
-   0x7ffff7dabd9c <__libc_start_call_main+140>    lock dec dword ptr [rip + 0x1f0505]
-   0x7ffff7dabda3 <__libc_start_call_main+147>    sete   al
-────────────────────────────────────────────────────────────────────────────────[ STACK ]─────────────────────────────────────────────────────────────────────────────────
-00:0000│ rsp 0x7fffffffdc38 —▸ 0x7ffff7dabd90 (__libc_start_call_main+128) ◂— mov edi, eax
-01:0008│     0x7fffffffdc40 ◂— 0
-02:0010│     0x7fffffffdc48 —▸ 0x5555555551da (main) ◂— endbr64
-03:0018│     0x7fffffffdc50 ◂— 0x1ffffdd30
-04:0020│     0x7fffffffdc58 —▸ 0x7fffffffdd48 —▸ 0x7fffffffdfd1 ◂— '/home/alter/CTFs/2025/TRX_CTF/dist/chall'
-05:0028│     0x7fffffffdc60 ◂— 0
-06:0030│     0x7fffffffdc68 ◂— 0xacb58eb5d2e91dc3
-07:0038│     0x7fffffffdc70 —▸ 0x7fffffffdd48 —▸ 0x7fffffffdfd1 ◂— '/home/alter/CTFs/2025/TRX_CTF/dist/chall'
-```
+![alt text](image-1.png)
 
 It feels pretty hopeless because there's no way to exploit it huh? But once we look carefully we know that there is `vsyscall` mapping page. The `vsyscall` partition is only visible when we enable `emulate` mode for the kernel.
 
