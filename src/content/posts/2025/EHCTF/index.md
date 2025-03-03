@@ -1,6 +1,6 @@
 ---
 title: "[WRITE UP] - EHCTF 2025"
-published: 2025-02-13
+published: 2025-03-03
 description: "Write up for EHCTF challenges"
 image: "./logo.png"
 tags:
