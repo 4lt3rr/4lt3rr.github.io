@@ -463,6 +463,6 @@ while True:
             break
 ```
 
-## Flow graph
+## Flow chart
 
 ![alt text](image-10.png)
