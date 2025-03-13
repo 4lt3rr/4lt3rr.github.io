@@ -1,6 +1,6 @@
 # About me
 
-- 🪄 I'm `Sol (aka Alter)`
+- 🪄 I'm `Jinn (aka Alter)`
 - 🐏 My zodiac: `Aries♈`
 - 🔭 I’m currently learning `pwn` & `rev`
 - 🌱 My goal is to become a `Vulnerability Researcher` & `Exploit Development`
