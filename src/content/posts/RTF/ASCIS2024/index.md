@@ -2,7 +2,7 @@
 title: "[RTF] - ASCIS 2024"
 published: 2025-03-13
 description: ""
-image: "./logo.jpg"
+image: "../cover.jpg"
 tags:
   - RTF
   - PWN
